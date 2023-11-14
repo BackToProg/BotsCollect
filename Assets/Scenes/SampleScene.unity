@@ -561,7 +561,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _SoldierCount: 3
-  _barrelField: {fileID: 875124927}
   _storage: {fileID: 1840999526}
 --- !u!114 &330268005
 MonoBehaviour:
@@ -575,6 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899cad1a3344647c7af2cba004873ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _barrelField: {fileID: 875124927}
 --- !u!114 &330268006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1451,6 +1451,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1525,13 +1526,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22155409, y: -0, z: -0, w: 0.9751481}
-  m_LocalPosition: {x: 0, y: 9.57, z: -31.18}
+  m_LocalRotation: {x: 0.17504461, y: 0.8124446, z: -0.2184265, w: 0.5114519}
+  m_LocalPosition: {x: -25.3, y: 14, z: 4.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 25.601, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 32.274, y: 116.815, z: 4.137}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9587a8eac5b87418f9d9071228e403de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 3
+  _rotationSpeed: 10
+  _zoomSpeed: 10
+  _forwardKey: 119
+  _backKey: 115
+  _leftKey: 97
+  _rightKey: 100
+  anchoredMoveKey: 325
+  anchoredRotateKey: 324
 --- !u!1 &1066415850
 GameObject:
   m_ObjectHideFlags: 0

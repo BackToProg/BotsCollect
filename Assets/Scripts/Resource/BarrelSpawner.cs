@@ -20,7 +20,7 @@ namespace Resource
 
         private IEnumerator SpawnOnRandomPoint()
         {
-            WaitForSeconds waitForSeconds = new WaitForSeconds(_seconds);
+            WaitForSeconds delay = new WaitForSeconds(_seconds);
 
             while (_isActive)
             {
@@ -29,7 +29,7 @@ namespace Resource
                 newBarrel.Init();
                 _barrelField.AddBarrels(newBarrel);
             
-                yield return waitForSeconds;
+                yield return delay;
             }
         
         }
