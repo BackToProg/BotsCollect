@@ -853,7 +853,7 @@ GameObject:
   - component: {fileID: 626891990}
   - component: {fileID: 626891991}
   m_Layer: 0
-  m_Name: SoldiersSpawnPoint
+  m_Name: WorkersSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

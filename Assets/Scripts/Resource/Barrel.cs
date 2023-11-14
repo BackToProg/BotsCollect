@@ -1,13 +1,8 @@
 using UnityEngine;
+using Utils;
 
 namespace Resource
 {
-    public enum BarrelState
-    {
-        Idle,
-        InAction
-    }
-    
     public class Barrel : MonoBehaviour
     {
         public BarrelState BarrelState { get; private set; }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Resource;
 using Units;
 using UnityEngine;
+using Utils;
 
 namespace BaseFunctions
 {
@@ -10,54 +11,49 @@ namespace BaseFunctions
     public class Base: MonoBehaviour
     {
         [SerializeField] private int _SoldierCount;
-        [SerializeField] private BarrelField _barrelField;
         [SerializeField] private Storage _storage;
         
-        private List<Worker> _soldiers;
+        private List<Worker> _workers;
         private BaseScanner _baseScanner;
-        private WorkerCollectBarrel _solderCollectBarrel;
-
-        public List<Worker> Soldiers => _soldiers;
+        
         public Storage Storage => _storage;
         public int SoldiersCount => _SoldierCount;
+        
+        public void AddWorkers(Worker worker)
+        {
+            _workers.Add(worker);
+        }
 
         private void Awake()
         {
-            _soldiers = new List<Worker>();
+            _workers = new List<Worker>();
             _baseScanner = GetComponent<BaseScanner>();
-            _solderCollectBarrel = GetComponent<WorkerCollectBarrel>();
         }
 
         private void Update()
         {
-            Barrel barrelToCollect = _baseScanner.ScanArea(_barrelField.Barrels);
-            Worker workerToWork = SoldierToWork();
-
-
+            Barrel barrelToCollect = _baseScanner.ScanArea();
+            Worker workerToWork = WorkerToWork();
+            
             if (barrelToCollect != null && workerToWork != null)
             {
                 barrelToCollect.ChangeState(BarrelState.InAction);
                 workerToWork.GetTarget(barrelToCollect);
-                workerToWork.ChangeState(SoldierState.MoveToBarrel);
+                workerToWork.ChangeState(WorkerState.MoveToBarrel);
             }
         }
 
-        private Worker SoldierToWork()
+        private Worker WorkerToWork()
         {
-            foreach (var soldier in _soldiers)
+            foreach (var soldier in _workers)
             {
-                if (soldier.SoldierState == SoldierState.Idle)
+                if (soldier.State == WorkerState.Idle)
                 {
                     return soldier;
                 }
             }
 
             return null;
-        }
-        
-        public void AddSoldiers(Worker worker)
-        {
-            _soldiers.Add(worker);
         }
     }
 }

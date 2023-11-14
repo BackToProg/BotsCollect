@@ -24,8 +24,9 @@ namespace Resource
 
             while (_isActive)
             {
-                Vector3 spawnPoint = SupportSpawnerFunction.DefinePointInArea(_barrelField.transform, _spawnRadius);
+                Vector3 spawnPoint = SupportFunction.DefinePointInArea(_barrelField.transform, _spawnRadius);
                 Barrel newBarrel = Instantiate(_barrel, spawnPoint, Quaternion.identity);
+                newBarrel.Init();
                 _barrelField.AddBarrels(newBarrel);
             
                 yield return waitForSeconds;

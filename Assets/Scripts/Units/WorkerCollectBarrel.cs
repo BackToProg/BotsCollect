@@ -27,7 +27,9 @@ namespace Units
 
         public void PickUp(Worker worker, Barrel barrel)
         {
-            barrel.transform.position = worker.transform.position + new Vector3(0,0.6f,0.5f);
+            Vector3 barrelPickedUpPosition = new Vector3(0, 0.6f, 0.5f);
+            
+            barrel.transform.position = worker.transform.position + barrelPickedUpPosition;
             barrel.transform.parent = worker.transform;
             barrel.GetComponent<Collider>().enabled = false;
         }

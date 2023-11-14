@@ -1,3 +1,4 @@
+using Resource;
 using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
@@ -8,11 +9,16 @@ namespace BaseFunctions
     {
         [SerializeField] private int _storeRadius;
 
-        private Vector3 _freePlace;
+        private int _barrelCount;
+
+        public void IncreaseBarrelCount()
+        {
+            _barrelCount++;
+        }
         
         public Vector3 GetPlaceToStore()
         {
-            return SupportSpawnerFunction.DefinePointInArea(transform, _storeRadius);
+            return SupportFunction.DefinePointInArea(transform, _storeRadius);
         }
     }
 }

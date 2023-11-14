@@ -16,10 +16,10 @@ namespace Units
         {
             for (int i = 0; i < _base.SoldiersCount; i++)
             {
-                Vector3 spawnPoint = SupportSpawnerFunction.DefinePointInArea(_spawnPointArea, _spawnRadius);
+                Vector3 spawnPoint = SupportFunction.DefinePointInArea(_spawnPointArea, _spawnRadius);
                 Worker newWorker = Instantiate(worker, spawnPoint, Quaternion.identity);
                 newWorker.Init(_base, newWorker.transform.position);
-                _base.AddSoldiers(newWorker);
+                _base.AddWorkers(newWorker);
             }
         }
     }

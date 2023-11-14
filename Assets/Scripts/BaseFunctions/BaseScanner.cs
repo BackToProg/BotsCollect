@@ -1,16 +1,17 @@
-using System;
 using System.Collections.Generic;
 using Resource;
-using Unity.VisualScripting;
 using UnityEngine;
+using Utils;
 
 namespace BaseFunctions
 {
     public class BaseScanner : MonoBehaviour
     {
-        public Barrel ScanArea(List<Barrel> barrels)
+       [SerializeField] private BarrelField _barrelField;
+        
+        public Barrel ScanArea()
         {
-            foreach (var barrel in barrels)
+            foreach (var barrel in _barrelField.Barrels)
             {
                 if (IsBarrelStateIdle(barrel))
                 {
