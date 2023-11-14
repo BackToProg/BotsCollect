@@ -40,9 +40,5 @@ namespace CameraControl
         public KeyCode AnchoredMoveKey => anchoredMoveKey;
 
         public KeyCode AnchoredRotateKey => anchoredRotateKey;
-        
-        public KeyCode AnchoredMoveKey1 => anchoredMoveKey;
-
-        public KeyCode AnchoredRotateKey1 => anchoredRotateKey;
     }
 }

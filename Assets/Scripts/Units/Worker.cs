@@ -20,9 +20,13 @@ namespace Units
         private WorkerState _state;
         
         public Barrel TargetBarrel => _targetBarrel;
+        
         public Base Base => _base;
+        
         public WorkerState State => _state;
+        
         public Vector3 WaitingPoint => _waitingPoint;
+        
         public float Speed => _speed;
 
         public void Init(Base soldiersBase, Vector3 waitingPoint)

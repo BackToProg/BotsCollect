@@ -11,14 +11,14 @@ namespace Resource
 
         public List<Barrel> Barrels => _barrels;
 
-        private void Awake()
-        {
-            _barrels = new List<Barrel>();
-        }
-
         public void AddBarrels(Barrel barrel)
         {
             _barrels.Add(barrel);
+        }
+        
+        private void Awake()
+        {
+            _barrels = new List<Barrel>();
         }
     }
 }
