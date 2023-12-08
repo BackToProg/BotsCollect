@@ -519,9 +519,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 330268003}
-  - component: {fileID: 330268005}
   - component: {fileID: 330268004}
-  - component: {fileID: 330268006}
+  - component: {fileID: 330268005}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -546,6 +545,7 @@ Transform:
   - {fileID: 2005186058}
   - {fileID: 1573166321}
   - {fileID: 202720786}
+  - {fileID: 626891990}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330268004
@@ -557,11 +557,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 330268002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d5845fa9d7e48e491000305850b2030, type: 3}
+  m_Script: {fileID: 11500000, guid: 86b6d5b76efb41dfa5f4b72dbe9185f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SoldierCount: 3
+  _WorkerCount: 3
   _storage: {fileID: 1840999526}
+  _barrelField: {fileID: 875124925}
 --- !u!114 &330268005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,22 +572,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 330268002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 899cad1a3344647c7af2cba004873ef2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6309df7966784989b87c1f18c728ec1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _barrelField: {fileID: 875124927}
---- !u!114 &330268006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330268002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3e81f25cffa46988498b4c86452276a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _barrelField: {fileID: 875124925}
 --- !u!4 &388710602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6299982365166262033, guid: 2d4642e9035901c40bc868fa48666f60, type: 3}
@@ -852,6 +841,7 @@ GameObject:
   m_Component:
   - component: {fileID: 626891990}
   - component: {fileID: 626891991}
+  - component: {fileID: 626891992}
   m_Layer: 0
   m_Name: WorkersSpawnPoint
   m_TagString: Untagged
@@ -872,7 +862,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 330268003}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &626891991
 MonoBehaviour:
@@ -883,13 +873,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 626891989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe1274b2a835479188e6327a184fa17, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f9be41bebb9463694582e5eb4698262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPointArea: {fileID: 626891990}
-  worker: {fileID: 2881939616083239874, guid: c9173b56cd74a45809d708a72fbb3697, type: 3}
-  _spawnRadius: 5
+  _spawnRadius: 4
+  _worker: {fileID: 2232371539772272294, guid: c9173b56cd74a45809d708a72fbb3697, type: 3}
+  _waitingPoint: {fileID: 6866314981312337454, guid: 4a9b20108e18f45e3bdeab241442a6b6, type: 3}
   _base: {fileID: 330268004}
+--- !u!114 &626891992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626891989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd51222dee8041008a8b57b6f10634a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 2494442360894528182, guid: c9173b56cd74a45809d708a72fbb3697, type: 3}
 --- !u!4 &641487144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6299982365166262033, guid: 2d4642e9035901c40bc868fa48666f60, type: 3}
@@ -1326,8 +1330,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 875124924}
-  - component: {fileID: 875124927}
   - component: {fileID: 875124926}
+  - component: {fileID: 875124925}
   m_Layer: 0
   m_Name: BarrelSpawnPointArea
   m_TagString: Untagged
@@ -1350,6 +1354,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &875124925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875124923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f67f9c8618ae438f9ac785e68d5b92b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &875124926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1359,25 +1375,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 875124923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b577e7e0aecad4d67b50de03ee9b6008, type: 3}
+  m_Script: {fileID: 11500000, guid: 6838b7d0ea4e04eed9046a97b93076ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _barrel: {fileID: -9187052322783717263, guid: bc2bb80f21e946e4b8927eff4f7a8188, type: 3}
-  _seconds: 10
-  _spawnRadius: 10
-  _barrelField: {fileID: 875124927}
---- !u!114 &875124927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 875124923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14636abc5f1f473f96c1dd385122bfb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _barrel: {fileID: 3335962446464114240, guid: bc2bb80f21e946e4b8927eff4f7a8188, type: 3}
+  _seconds: 3
+  _spawnRadius: 4
+  _barrelField: {fileID: 875124925}
 --- !u!1001 &908357696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2310,7 +2314,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1840999523}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13e8fc686c3e4478bb5befb3263f63d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 90dc55a0660b46b8acecaf1ab81e7498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _storeRadius: 4
@@ -2563,4 +2567,3 @@ SceneRoots:
   - {fileID: 1066415851}
   - {fileID: 330268003}
   - {fileID: 875124924}
-  - {fileID: 626891990}

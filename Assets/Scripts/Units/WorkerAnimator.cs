@@ -11,7 +11,7 @@ namespace Units
 
         public void RunWalkAnimation(float speed)
         {
-            _animator.SetFloat(Speed,speed);
+            _animator.SetFloat(Speed, speed);
         }
 
         public void RunCarryAnimation(bool hasBarrel)

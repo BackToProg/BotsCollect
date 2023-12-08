@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
-using Utils;
 
-namespace Resource
+namespace Environment
 {
     public class BarrelSpawner : MonoBehaviour
     {
@@ -10,7 +9,7 @@ namespace Resource
         [SerializeField] private int _seconds;
         [SerializeField] private int _spawnRadius;
         [SerializeField] private BarrelField _barrelField;
-    
+
         private readonly bool _isActive = true;
 
         private void Start()
@@ -24,14 +23,12 @@ namespace Resource
 
             while (_isActive)
             {
-                Vector3 spawnPoint = SupportFunction.DefinePointInArea(_barrelField.transform, _spawnRadius);
+                Vector3 spawnPoint = Utils.SupportFunctions.DefinePointInArea(_barrelField.transform, _spawnRadius);
                 Barrel newBarrel = Instantiate(_barrel, spawnPoint, Quaternion.identity);
-                newBarrel.Init();
                 _barrelField.AddBarrels(newBarrel);
-            
+
                 yield return delay;
             }
-        
         }
     }
 }

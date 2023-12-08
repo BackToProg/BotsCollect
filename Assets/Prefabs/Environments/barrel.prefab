@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 793e6a071cb449f41800b3d768079e08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.535987
+      value: -8.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 793e6a071cb449f41800b3d768079e08, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 793e6a071cb449f41800b3d768079e08, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.507332
+      value: 6.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 793e6a071cb449f41800b3d768079e08, type: 3}
       propertyPath: m_LocalRotation.w
@@ -65,10 +65,10 @@ PrefabInstance:
       addedObject: {fileID: 7084472457593419451}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 793e6a071cb449f41800b3d768079e08, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -9187052322783717263}
+      addedObject: {fileID: 1988209387475704764}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 793e6a071cb449f41800b3d768079e08, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1988209387475704764}
+      addedObject: {fileID: 3335962446464114240}
   m_SourcePrefab: {fileID: 100100000, guid: 793e6a071cb449f41800b3d768079e08, type: 3}
 --- !u!1 &1783682649919855324 stripped
 GameObject:
@@ -98,18 +98,6 @@ CapsuleCollider:
   m_Height: 1.3471897
   m_Direction: 1
   m_Center: {x: 0.000007659197, y: 0.36267185, z: 0.0047406554}
---- !u!114 &-9187052322783717263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783682649919855324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5288adc3c1e94465fa4bc5e1660d015c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1988209387475704764
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -137,3 +125,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &3335962446464114240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783682649919855324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbf17b92dbde414a878ad6146f1b7e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
