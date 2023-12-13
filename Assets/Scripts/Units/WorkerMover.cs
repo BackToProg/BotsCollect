@@ -52,9 +52,14 @@ namespace Units
 
             if (collision.TryGetComponent(out NewBaseFlag newBaseFlag))
             {
-                Destroy(newBaseFlag.gameObject);
-                _baseCreator.CreateBase(newBaseFlag.transform.position, _worker, _worker.Base);
+                BuildNewBase(newBaseFlag);
             }
+        }
+
+        private void BuildNewBase(NewBaseFlag newBaseFlag)
+        {
+            Destroy(newBaseFlag.gameObject);
+            _baseCreator.CreateBase(newBaseFlag.transform.position, _worker, _worker.Base);
         }
 
         private void ReachedWaitingPoint()

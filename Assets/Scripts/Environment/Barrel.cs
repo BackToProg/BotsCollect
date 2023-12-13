@@ -14,6 +14,5 @@ namespace Environment
         {
             Destroy(gameObject);
         }
-
     }
 }

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Infrastructure.WorkerStateMachine
 {
     public class WorkerFsmStateIdle : WorkerFsmState

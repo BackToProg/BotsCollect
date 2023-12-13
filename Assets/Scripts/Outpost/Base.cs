@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Environment;
 using Infrastructure.WorkerStateMachine;
@@ -10,7 +9,7 @@ namespace Outpost
     [RequireComponent(typeof(NewWorkerCreator))]
     public class Base : MonoBehaviour
     {
-        [SerializeField] private int _WorkerInitialCount;
+        [SerializeField] private int _workerInitialCount;
         [SerializeField] private Storage _storage;
         [SerializeField] private BarrelField _barrelField;
         [SerializeField] private WorkerSpawner _workerSpawner;
@@ -23,14 +22,14 @@ namespace Outpost
         private Transform _newBaseTransform;
 
         public Storage Storage => _storage;
-        public int WorkersInitialCount => _WorkerInitialCount;
+        public int WorkersInitialCount => _workerInitialCount;
         public BarrelField BarrelField => _barrelField;
         public WorkerSpawner WorkerSpawner => _workerSpawner;
 
         public void Init(BarrelField barrelField, int workerCount)
         {
             _barrelField = barrelField;
-            _WorkerInitialCount = workerCount;
+            _workerInitialCount = workerCount;
         }
 
         public void AddWorkers(Worker worker)
