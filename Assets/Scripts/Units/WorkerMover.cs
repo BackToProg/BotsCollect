@@ -6,15 +6,18 @@ namespace Units
 {
     [RequireComponent(typeof(Worker))]
     [RequireComponent(typeof(BarrelInteraction))]
+    [RequireComponent(typeof(BaseCreator))]
     public class WorkerMover : MonoBehaviour
     {
         private Worker _worker;
         private BarrelInteraction _barrelInteraction;
+        private BaseCreator _baseCreator;
 
         private void Awake()
         {
             _worker = GetComponent<Worker>();
             _barrelInteraction = GetComponent<BarrelInteraction>();
+            _baseCreator = GetComponent<BaseCreator>();
         }
 
         private void Update()
@@ -46,6 +49,12 @@ namespace Units
             {
                 ReachedWaitingPoint();
             }
+
+            if (collision.TryGetComponent(out NewBaseFlag newBaseFlag))
+            {
+                Destroy(newBaseFlag.gameObject);
+                _baseCreator.CreateBase(newBaseFlag.transform.position, _worker, _worker.Base);
+            }
         }
 
         private void ReachedWaitingPoint()
@@ -70,9 +79,9 @@ namespace Units
             Vector3 storagePlace = storage.GetPlaceToStore();
 
             _worker.WorkerFsm.UpdateMoveTarget(_worker.WaitingPoint.transform);
+            storage.AddBarrel(_worker.TargetBarrel);
             _barrelInteraction.Drop(_worker.TargetBarrel, storagePlace);
             _worker.ClearTargetBarrel();
-            storage.IncreaseStoreBarrelCount();
             _worker.Animator.RunCarryAnimation(false);
         }
     }

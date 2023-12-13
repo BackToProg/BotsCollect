@@ -10,6 +10,11 @@ namespace Outpost
 
         private Base _base;
 
+        public void Init(BarrelField barrelField)
+        {
+            _barrelField = barrelField;
+        }
+
         private void Awake()
         {
             _base = GetComponent<Base>();
@@ -17,7 +22,10 @@ namespace Outpost
 
         private void Start()
         {
-            _barrelField.OnFreeBarrel += BarrelFieldOnFreeBarrel;
+            if (_barrelField != null)
+            {
+                _barrelField.OnFreeBarrel += BarrelFieldOnFreeBarrel;
+            }
         }
 
         private void BarrelFieldOnFreeBarrel(object sender, Barrel barrel)

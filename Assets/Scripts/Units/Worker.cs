@@ -1,11 +1,14 @@
+using System;
 using Environment;
 using Infrastructure.WorkerStateMachine;
 using Outpost;
 using UnityEngine;
+using Vector3 = System.Numerics.Vector3;
 
 namespace Units
 {
     [RequireComponent(typeof(WorkerAnimator))]
+    [RequireComponent(typeof(BaseCreator))]
     public class Worker : MonoBehaviour
     {
         [SerializeField] private float _speed;
@@ -30,21 +33,31 @@ namespace Units
         {
             _base = outpost;
             _waitingPoint = waitingPoint;
-            _workerFsm = new WorkerFsm();
-            _animator = GetComponent<WorkerAnimator>();
-            WorkerStateMachineInit();
         }
 
-        public void GetTarget(Barrel barrel)
+        public void GetTargetBarrel(Barrel barrel)
         {
             _targetBarrel = barrel;
-            _workerFsm.UpdateMoveTarget(barrel.transform);
+            GetTargetToMove(barrel.transform);
+
+        }
+
+        public void GetTargetToMove(Transform target)
+        {
+            _workerFsm.UpdateMoveTarget(target);
             _animator.RunWalkAnimation(_speed);
         }
 
         public void ClearTargetBarrel()
         {
             _targetBarrel = null;
+        }
+
+        private void Awake()
+        {
+            _animator = GetComponent<WorkerAnimator>();
+            _workerFsm = new WorkerFsm();
+            WorkerStateMachineInit();
         }
 
         private void WorkerStateMachineInit()

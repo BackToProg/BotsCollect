@@ -10,5 +10,10 @@ namespace Environment
 
         public void SetInActionState() => _isInAction = true;
 
+        public void Destroy()
+        {
+            Destroy(gameObject);
+        }
+
     }
 }
