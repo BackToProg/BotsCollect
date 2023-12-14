@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Infrastructure.WorkerStateMachine
 {
-    public sealed class WorkerFsmStateMove : WorkerFsmState
+    public sealed class WorkerFiniteStateMachineStateMove : WorkerFiniteStateMachineState
     {
         private readonly Transform _transform;
         private readonly float _speed;
 
-        public WorkerFsmStateMove(WorkerFsm workerFsm, Transform transform, float speed) : base(workerFsm)
+        public WorkerFiniteStateMachineStateMove(WorkerFiniteStateMachine workerFiniteStateMachine, Transform transform, float speed) : base(workerFiniteStateMachine)
         {
             _transform = transform;
             _speed = speed;
@@ -23,13 +23,13 @@ namespace Infrastructure.WorkerStateMachine
 
         public override void Update()
         {
-            if (WorkerFsm.TargetToMove == null)
+            if (WorkerFiniteStateMachine.TargetToMove == null)
             {
-                WorkerFsm.SetState<WorkerFsmStateIdle>();
+                WorkerFiniteStateMachine.SetState<WorkerFiniteStateMachineStateIdle>();
             }
             else
             {
-                Move(WorkerFsm.TargetToMove);
+                Move(WorkerFiniteStateMachine.TargetToMove);
             }
         }
 

@@ -8,15 +8,21 @@ namespace Outpost
     public class Storage : MonoBehaviour
     {
         [SerializeField] private int _storeRadius;
+        [SerializeField] private float _positionY = 0.2f;
 
         private int _barrelCount;
         private List<Barrel> _barrelsOnStock;
 
         public int BarrelCount => _barrelsOnStock.Count;
 
+        private void Awake()
+        {
+            _barrelsOnStock = new List<Barrel>();
+        }
+
         public Vector3 GetPlaceToStore()
         {
-            return SupportFunctions.DefinePointInArea(transform, _storeRadius);
+            return SupportFunctions.DefinePointInArea(transform, _storeRadius, _positionY);
         }
 
         public void AddBarrel(Barrel barrel)
@@ -24,19 +30,14 @@ namespace Outpost
             _barrelsOnStock.Add(barrel);
         }
 
-        public void IssueBarrels()
+        public void IssueBarrels(int issueBarrelCount)
         {
-            foreach (Barrel barrel in _barrelsOnStock)
+            for (int i = 0; i < issueBarrelCount; i++)
             {
-                barrel.Destroy();
+                _barrelsOnStock[i].Destroy();
             }
-            
-            _barrelsOnStock.Clear();
-        }
-        
-        private void Awake()
-        {
-            _barrelsOnStock = new List<Barrel>();
+
+            _barrelsOnStock.RemoveRange(0, issueBarrelCount);
         }
     }
 }

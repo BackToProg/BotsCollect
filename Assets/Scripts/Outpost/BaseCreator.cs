@@ -8,22 +8,20 @@ namespace Outpost
     public class BaseCreator : MonoBehaviour
     {
         [SerializeField] private Base _template;
+        [SerializeField] private float _positionY = 0.2f;
 
         public void CreateBase(Vector3 basePosition, Worker worker, Base firstBase)
         {
-            Debug.Log(basePosition);
             Base newBase = Instantiate(_template, basePosition, Quaternion.Euler(0, 180, 0));
             newBase.Init(firstBase.BarrelField, 0);
-            Scanner scanner = newBase.GetComponent<Scanner>();
-            scanner.Init(firstBase.BarrelField);
 
-            Vector3 newSpawnPoint = SupportFunctions.DefinePointInArea(newBase.WorkerSpawner.SpawnPointArea,
-                newBase.WorkerSpawner.SpawnRadius);
+            Vector3 newSpawnPoint = SupportFunctions.DefinePointInArea(newBase.WorkerSpawner.SpawnPointCenter,
+                newBase.WorkerSpawner.Radius, _positionY);
             WaitingPoint newWaitingPoint = Instantiate(newBase.WorkerSpawner.WaitingPointTemplate, newSpawnPoint,
                 Quaternion.identity);
             worker.Init(newBase, newWaitingPoint);
             worker.GetTargetToMove(newWaitingPoint.transform);
-            worker.WorkerFsm.Update();
+            worker.WorkerFiniteStateMachine.Update();
         }
     }
 }

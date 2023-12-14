@@ -119,11 +119,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f9be41bebb9463694582e5eb4698262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPointArea: {fileID: 424863539752576287}
-  _spawnRadius: 4
+  _spawnPointCenter: {fileID: 424863539752576287}
+  _radius: 0
   _workerTemplate: {fileID: 2232371539772272294, guid: c9173b56cd74a45809d708a72fbb3697, type: 3}
   _waitingPointTemplate: {fileID: 6866314981312337454, guid: 4a9b20108e18f45e3bdeab241442a6b6, type: 3}
   _base: {fileID: 4523627177942667177}
+  _positionY: 0.2
 --- !u!114 &8195019324708360925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _storeRadius: 4
+  _positionY: 0.2
 --- !u!1 &8222303535654019579
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,10 +297,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b6d5b76efb41dfa5f4b72dbe9185f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _WorkerInitialCount: 0
+  _workerInitialCount: 0
   _storage: {fileID: 4514682098880224565}
   _barrelField: {fileID: 0}
   _workerSpawner: {fileID: 3548296250470717981}
+  _barrelCountForNewWorker: 3
+  _barrelCountForNewBase: 5
 --- !u!114 &2953227140370257371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +315,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6309df7966784989b87c1f18c728ec1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _barrelField: {fileID: 0}
+  _radius: 5
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &5294673055550859895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _template: {fileID: 4523627177942667177}
+  _positionY: 0.2
 --- !u!1 &8520031566810771801
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,14 +8,16 @@ namespace Environment
     {
         [SerializeField] private Barrel _barrel;
         [SerializeField] private int _seconds;
-        [SerializeField] private int _spawnRadius;
+        [SerializeField] private int _radius;
         [SerializeField] private BarrelField _barrelField;
+        [SerializeField] private float _positionY = 0.2f;
 
         private readonly bool _isActive = true;
+        private Coroutine _barrelSpawnCoroutine;
 
         private void Start()
         {
-            StartCoroutine(SpawnOnRandomPoint());
+            _barrelSpawnCoroutine = StartCoroutine(SpawnOnRandomPoint());
         }
 
         private IEnumerator SpawnOnRandomPoint()
@@ -23,12 +26,17 @@ namespace Environment
 
             while (_isActive)
             {
-                Vector3 spawnPoint = Utils.SupportFunctions.DefinePointInArea(_barrelField.transform, _spawnRadius);
+                Vector3 spawnPoint = Utils.SupportFunctions.DefinePointInArea(_barrelField.transform, _radius, _positionY);
                 Barrel newBarrel = Instantiate(_barrel, spawnPoint, Quaternion.identity);
                 _barrelField.AddBarrels(newBarrel);
 
                 yield return delay;
             }
+        }
+
+        private void OnDestroy()
+        {
+            StopCoroutine(_barrelSpawnCoroutine);
         }
     }
 }

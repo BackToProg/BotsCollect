@@ -15,19 +15,26 @@ namespace Units
 
         private Base _base;
         private WaitingPoint _waitingPoint;
-        private WorkerFsm _workerFsm;
-        private WorkerFsmStateIdle _stateIdle;
-        private WorkerFsmStateMove _stateMove;
+        private WorkerFiniteStateMachine _workerFiniteStateMachine;
+        private WorkerFiniteStateMachineStateIdle _stateMachineStateIdle;
+        private WorkerFiniteStateMachineStateMove _stateMachineStateMove;
         private Barrel _targetBarrel;
         private WorkerAnimator _animator;
 
         public Barrel TargetBarrel => _targetBarrel;
-        public WorkerFsm WorkerFsm => _workerFsm;
+        public WorkerFiniteStateMachine WorkerFiniteStateMachine => _workerFiniteStateMachine;
         public WaitingPoint WaitingPoint => _waitingPoint;
         public Base Base => _base;
         public WorkerAnimator Animator => _animator;
 
-        public bool IsIdle => _workerFsm.CurrentState == _stateIdle;
+        public bool IsIdle => _workerFiniteStateMachine.CurrentStateMachineState == _stateMachineStateIdle;
+        
+        private void Awake()
+        {
+            _animator = GetComponent<WorkerAnimator>();
+            _workerFiniteStateMachine = new WorkerFiniteStateMachine();
+            WorkerStateMachineInit();
+        }
 
         public void Init(Base outpost, WaitingPoint waitingPoint)
         {
@@ -35,7 +42,7 @@ namespace Units
             _waitingPoint = waitingPoint;
         }
 
-        public void GetTargetBarrel(Barrel barrel)
+        public void SetTargetBarrel(Barrel barrel)
         {
             _targetBarrel = barrel;
             GetTargetToMove(barrel.transform);
@@ -44,7 +51,7 @@ namespace Units
 
         public void GetTargetToMove(Transform target)
         {
-            _workerFsm.UpdateMoveTarget(target);
+            _workerFiniteStateMachine.UpdateMoveTarget(target);
             _animator.RunWalkAnimation(_speed);
         }
 
@@ -52,22 +59,16 @@ namespace Units
         {
             _targetBarrel = null;
         }
-
-        private void Awake()
-        {
-            _animator = GetComponent<WorkerAnimator>();
-            _workerFsm = new WorkerFsm();
-            WorkerStateMachineInit();
-        }
+        
 
         private void WorkerStateMachineInit()
         {
-            _stateIdle = new WorkerFsmStateIdle(_workerFsm);
-            _stateMove = new WorkerFsmStateMove(_workerFsm, transform, _speed);
+            _stateMachineStateIdle = new WorkerFiniteStateMachineStateIdle(_workerFiniteStateMachine);
+            _stateMachineStateMove = new WorkerFiniteStateMachineStateMove(_workerFiniteStateMachine, transform, _speed);
 
-            _workerFsm.AddState(_stateIdle);
-            _workerFsm.AddState(_stateMove);
-            _workerFsm.SetState<WorkerFsmStateIdle>();
+            _workerFiniteStateMachine.AddState(_stateMachineStateIdle);
+            _workerFiniteStateMachine.AddState(_stateMachineStateMove);
+            _workerFiniteStateMachine.SetState<WorkerFiniteStateMachineStateIdle>();
         }
     }
 }

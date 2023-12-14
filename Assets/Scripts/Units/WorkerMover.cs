@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using Environment;
 using Outpost;
 using UnityEngine;
@@ -12,6 +14,7 @@ namespace Units
         private Worker _worker;
         private BarrelInteraction _barrelInteraction;
         private BaseCreator _baseCreator;
+        private Coroutine _workerMovementCoroutine;
 
         private void Awake()
         {
@@ -22,9 +25,9 @@ namespace Units
 
         private void Update()
         {
-            if (_worker.WorkerFsm.TargetToMove != null)
+            if (_worker.WorkerFiniteStateMachine.TargetToMove != null)
             {
-                _worker.WorkerFsm.Update();
+                _worker.WorkerFiniteStateMachine.Update();
             }
         }
 
@@ -66,14 +69,14 @@ namespace Units
         {
             float stopSpeed = 0f;
 
-            _worker.WorkerFsm.UpdateMoveTarget(null);
+            _worker.WorkerFiniteStateMachine.UpdateMoveTarget(null);
             _worker.Animator.RunWalkAnimation(stopSpeed);
-            _worker.WorkerFsm.Update();
+            _worker.WorkerFiniteStateMachine.Update();
         }
 
         private void PickUpBarrel(Barrel barrel)
         {
-            _worker.WorkerFsm.UpdateMoveTarget(_worker.Base.Storage.transform);
+            _worker.WorkerFiniteStateMachine.UpdateMoveTarget(_worker.Base.Storage.transform);
             _barrelInteraction.PickUp(_worker, barrel);
             _worker.Base.BarrelField.RemoveBarrelFromField();
             _worker.Animator.RunCarryAnimation(true);
@@ -83,7 +86,7 @@ namespace Units
         {
             Vector3 storagePlace = storage.GetPlaceToStore();
 
-            _worker.WorkerFsm.UpdateMoveTarget(_worker.WaitingPoint.transform);
+            _worker.WorkerFiniteStateMachine.UpdateMoveTarget(_worker.WaitingPoint.transform);
             storage.AddBarrel(_worker.TargetBarrel);
             _barrelInteraction.Drop(_worker.TargetBarrel, storagePlace);
             _worker.ClearTargetBarrel();

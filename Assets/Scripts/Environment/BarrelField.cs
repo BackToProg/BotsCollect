@@ -8,8 +8,11 @@ namespace Environment
     public class BarrelField : MonoBehaviour
     {
         private Queue<Barrel> _barrels;
-
-        public event EventHandler<Barrel> OnFreeBarrel;
+        
+        private void Awake()
+        {
+            _barrels = new Queue<Barrel>();
+        }
 
         public void AddBarrels(Barrel barrel)
         {
@@ -19,31 +22,6 @@ namespace Environment
         public void RemoveBarrelFromField()
         {
             _barrels.Dequeue();
-        }
-
-        private void Update()
-        {
-            StartCoroutine(CreateEventForNewBarrel());
-        }
-
-        private void Awake()
-        {
-            _barrels = new Queue<Barrel>();
-        }
-
-        private IEnumerator CreateEventForNewBarrel()
-        {
-            while (_barrels.Count > 0)
-            {
-                Barrel barrel = TryGetFreeBarrel();
-
-                if (barrel != null)
-                {
-                    OnFreeBarrel?.Invoke(this, barrel);
-                }
-
-                yield return null;
-            }
         }
 
         private Barrel TryGetFreeBarrel()

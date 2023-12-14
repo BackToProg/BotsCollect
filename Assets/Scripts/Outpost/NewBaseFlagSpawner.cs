@@ -1,15 +1,17 @@
 using System;
 using MouseControl;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 
 namespace Outpost
 {
     public class NewBaseFlagSpawner : MonoBehaviour
     {
         [SerializeField] private NewBaseFlag _template;
-
-        private bool _isFlagAlreadySet;
+        
         private NewBaseFlag _newBaseFlag; 
+        private bool _isFlagAlreadySet;
         
         public static NewBaseFlagSpawner Instance { get; private set; }
         
@@ -27,7 +29,7 @@ namespace Outpost
 
             Instance = this;
         }
-
+        
         private void Update()
         {
             Vector3 flagPosition = MouseWorld.GetPosition();
@@ -45,6 +47,11 @@ namespace Outpost
             }
         }
 
+        public void SetStatusToInactive(bool isActive)
+        {
+            _isFlagAlreadySet = isActive;
+        }
+
         private void TryToSetFlag(Vector3 flagPosition)
         {
             if (flagPosition == Vector3.zero) return;
@@ -53,8 +60,8 @@ namespace Outpost
 
             if (_newBaseFlag == null) return;
             
+            _newBaseFlag.Init(this);
             OnNewBaseFlagSet?.Invoke(this, _newBaseFlag);
-
             _isFlagAlreadySet = true;
         }
     }
