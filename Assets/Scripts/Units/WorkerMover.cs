@@ -22,15 +22,7 @@ namespace Units
             _barrelInteraction = GetComponent<BarrelInteraction>();
             _baseCreator = GetComponent<BaseCreator>();
         }
-
-        private void Update()
-        {
-            if (_worker.WorkerFiniteStateMachine.TargetToMove != null)
-            {
-                _worker.WorkerFiniteStateMachine.Update();
-            }
-        }
-
+        
         private void OnTriggerEnter(Collider collision)
         {
             if (collision.TryGetComponent(out Barrel barrel))
@@ -58,7 +50,15 @@ namespace Units
                 BuildNewBase(newBaseFlag);
             }
         }
-
+        
+        private void Update()
+        {
+            if (_worker.WorkerFiniteStateMachine.TargetToMove != null)
+            {
+                _worker.WorkerFiniteStateMachine.Update();
+            }
+        }
+        
         private void BuildNewBase(NewBaseFlag newBaseFlag)
         {
             Destroy(newBaseFlag.gameObject);
